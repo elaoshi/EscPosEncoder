@@ -655,7 +655,7 @@ class EscPosEncoder {
   drawTextLeftAndRight(left, right, nCharScale) {
     const width = this._line_byte_size;
     const spaceNum = parseInt((width - left.length - right.length) / nCharScale);
-    // console.log('space is', spaceNum);
+    console.log('space is', spaceNum);
     const text = left + Array(spaceNum + 1).join(' ') + right;
     this.text(text);
     return this;

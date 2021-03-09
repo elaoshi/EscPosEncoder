@@ -603,7 +603,7 @@ class EscPosEncoder {
     this._queue([
       0x1d, 0x21, (nHeightScale&0x07) | ((nWidthScale&0x07) <<4),
     ]);
-    if(nWidthScale){
+    if (nWidthScale) {
       this._line_byte_size = 24;
     }
     return this;
@@ -648,17 +648,16 @@ class EscPosEncoder {
    * get text
   * @param  {string}   left  string
   * @param  {string}   right  string
-  * * @param  {string}   nCharScale  string
+  * @param  {string}   nCharScale  string
   * @return {object}          Return the object, for easy chaining commands
    */
-  drawTextLeftAndRight(left, right,nCharScale) {
+  drawTextLeftAndRight(left, right, nCharScale) {
     const width = this._line_byte_size;
     const spaceNum = parseInt((width - left.length - right.length) / nCharScale);
 
     const text = left + Array(spaceNum + 1).join(' ') + right;
     this.text(text);
     return this;
-
   }
 
 

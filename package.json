@@ -1,6 +1,6 @@
 {
   "name": "esc-pos-encoder",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Create a set of commands that can be send to any receipt printer that supports ESC/POS",
   "main": "src/esc-pos-encoder.js",
   "scripts": {
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NielsLeenheer/EscPosEncoder.git"
+    "url": "git+https://github.com/elaoshi/EscPosEncoder.git"
   },
   "keywords": [
     "pos",
@@ -21,12 +21,12 @@
     "receipt",
     "printer"
   ],
-  "author": "Niels Leenheer",
+  "author": "Eric Liu",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/NielsLeenheer/EscPosEncoder/issues"
+    "url": "https://github.com/elaoshi/EscPosEncoder/issues"
   },
-  "homepage": "https://github.com/NielsLeenheer/EscPosEncoder#readme",
+  "homepage": "https://github.com/elaoshi/EscPosEncoder#readme",
   "devDependencies": {
     "browserify": "^16.5.2",
     "chai": "^4.2.0",

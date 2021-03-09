@@ -254,4 +254,12 @@ describe('EscPosEncoder', function() {
             assert.deepEqual(new Uint8Array([ 28, 46 ]), result);
         });
     });
+
+    describe('setTextScale(1,0)', function () {
+        let result = encoder.setTextScale( 1, 0 ).encode();
+        console.log(result);
+        it('should be [ 29, 33, 16 ]', function () {
+            assert.deepEqual(new Uint8Array([ 29, 33, 16 ]), result);
+        });
+    });
 });

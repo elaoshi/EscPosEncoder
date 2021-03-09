@@ -577,6 +577,34 @@ class EscPosEncoder {
   }
 
   /**
+   * set text line height
+  * @param  {string}   nLineHeight  Text that needs to be printed
+  * @return {object}          Return the object, for easy chaining commands
+
+   */
+  setTextLineHeight(nLineHeight) {
+    this._queue([
+      0x1b, 0x33, nLineHeight,
+    ]);
+
+    return this;
+  }
+
+  /**
+   * set text scale
+  * @param  {string}   nWidthScale  Text that needs to be printed
+  * @param  {string}   nHeightScale  Text that needs to be printed
+  * @return {object}          Return the object, for easy chaining commands
+
+   */
+  setTextScale(nWidthScale, nHeightScale) {
+    this._queue([
+      0x1d, 0x21, (nHeightScale&0x07) | ((nWidthScale&0x07) <<4),
+    ]);
+    return this;
+  }
+
+  /**
      * Encode all previous commands
      *
      * @return {Uint8Array}         Return the encoded bytes

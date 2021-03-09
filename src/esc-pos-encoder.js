@@ -26,6 +26,7 @@ class EscPosEncoder {
     this._codepage = 'ascii';
     this._pageWidth = 576;
     this._baseLine = 3;
+    this._line_byte_size = 32;
     this._state = {
       'bold': false,
       'italic': false,
@@ -644,12 +645,12 @@ class EscPosEncoder {
    * get text
   * @param  {string}   left  string
   * @param  {string}   right  string
-  * * @param  {string}   nCharWidth  string
+  * * @param  {string}   nCharScale  string
   * @return {object}          Return the object, for easy chaining commands
    */
-  drawTextLeftAndRight(left, right,nCharWidth) {
-    const width = this._pageWidth;
-    const spaceNum = parseInt((width - left.length - right.length) / nCharWidth);
+  drawTextLeftAndRight(left, right,nCharScale) {
+    const width = this._line_byte_size;
+    const spaceNum = parseInt((width - left.length - right.length) / nCharScale);
 
     const text = left + Array(spaceNum + 1).join(' ') + right;
     this.text(text);

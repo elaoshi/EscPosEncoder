@@ -651,7 +651,7 @@ class EscPosEncoder {
     const spaceNum = parseInt((width - left.length - right.length) / 20);
 
     const text = left + Array(spaceNum + 1).join(' ') + right;
-    this.text(value);
+    this.text(text);
     return this;
 
   }

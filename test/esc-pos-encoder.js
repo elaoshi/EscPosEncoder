@@ -262,4 +262,12 @@ describe('EscPosEncoder', function() {
             assert.deepEqual(new Uint8Array([ 29, 33, 16 ]), result);
         });
     });
+
+    describe('setHorizontalAbsolutePrintPosition(567 - 12 * 6)', function () {
+        let result = encoder.setHorizontalAbsolutePrintPosition(567 - 12 * 6).encode();
+        console.log(result);
+        it('should be [ 29, 36, 239, 1 ]', function () {
+            assert.deepEqual(new Uint8Array([ 29, 36, 239, 1 ]), result);
+        });
+    });
 });

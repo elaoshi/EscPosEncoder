@@ -578,7 +578,7 @@ class EscPosEncoder {
 
   /**
    * set text line height
-  * @param  {string}   nLineHeight  Text that needs to be printed
+  * @param  {string}   nLineHeight  height number
   * @return {object}          Return the object, for easy chaining commands
 
    */
@@ -592,14 +592,27 @@ class EscPosEncoder {
 
   /**
    * set text scale
-  * @param  {string}   nWidthScale  Text that needs to be printed
-  * @param  {string}   nHeightScale  Text that needs to be printed
+  * @param  {string}   nWidthScale  width 0,1
+  * @param  {string}   nHeightScale  height 0,1
   * @return {object}          Return the object, for easy chaining commands
 
    */
   setTextScale(nWidthScale, nHeightScale) {
     this._queue([
       0x1d, 0x21, (nHeightScale&0x07) | ((nWidthScale&0x07) <<4),
+    ]);
+    return this;
+  }
+
+  /**
+   * set text scale
+  * @param  {string}   nPosition  position (paperWidth - 12*6)
+  * @return {object}          Return the object, for easy chaining commands
+
+   */
+  setHorizontalAbsolutePrintPosition(nPosition) {
+    this._queue([
+      0x1d, 0x24, nPosition%0x100, nPosition/0x100,
     ]);
     return this;
   }

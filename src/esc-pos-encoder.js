@@ -644,11 +644,12 @@ class EscPosEncoder {
    * get text
   * @param  {string}   left  string
   * @param  {string}   right  string
+  * * @param  {string}   nCharWidth  string
   * @return {object}          Return the object, for easy chaining commands
    */
-  drawTextLeftAndRight(left, right) {
+  drawTextLeftAndRight(left, right,nCharWidth) {
     const width = this._pageWidth;
-    const spaceNum = parseInt((width - left.length - right.length) / 20);
+    const spaceNum = parseInt((width - left.length - right.length) / nCharWidth);
 
     const text = left + Array(spaceNum + 1).join(' ') + right;
     this.text(text);

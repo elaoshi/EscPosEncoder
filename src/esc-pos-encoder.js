@@ -603,6 +603,9 @@ class EscPosEncoder {
     this._queue([
       0x1d, 0x21, (nHeightScale&0x07) | ((nWidthScale&0x07) <<4),
     ]);
+    if(nWidthScale){
+      this._line_byte_size = 24;
+    }
     return this;
   }
 

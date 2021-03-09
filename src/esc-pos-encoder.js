@@ -604,6 +604,7 @@ class EscPosEncoder {
       0x1d, 0x21, (nHeightScale&0x07) | ((nWidthScale&0x07) <<4),
     ]);
     if (nWidthScale) {
+      console.log("change to 24");
       this._line_byte_size = 24;
     }
     return this;

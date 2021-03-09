@@ -4,6 +4,8 @@ const {createCanvas} = require('canvas');
 const Dither = require('canvas-dither');
 const Flatten = require('canvas-flatten');
 
+const BASIC_LINE_SIZE = 48;
+const BASIC_LINE_LARGE_SIZE = 24;
 
 /**
  * Create a byte stream based on commands for ESC/POS printers
@@ -606,6 +608,8 @@ class EscPosEncoder {
     if (nWidthScale) {
       console.log("change to 24");
       this._line_byte_size = 24;
+    }else{
+      this._line_byte_size = 48;
     }
     return this;
   }

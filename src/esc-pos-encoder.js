@@ -26,7 +26,7 @@ class EscPosEncoder {
     this._codepage = 'ascii';
     this._pageWidth = 576;
     this._baseLine = 3;
-    this._line_byte_size = 32;
+    this._line_byte_size = 48;
     this._state = {
       'bold': false,
       'italic': false,

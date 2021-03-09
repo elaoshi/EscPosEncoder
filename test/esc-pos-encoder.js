@@ -280,7 +280,7 @@ describe('EscPosEncoder', function() {
     });
 
     describe('drawTextLeftAndRight', function () {
-        let result = encoder.drawTextLeftAndRight("hhh","$20.00");
+        let result = encoder.drawTextLeftAndRight("hhh","$20.00",13);
         console.log(result);
         // it('should be 72', function () {
         //     assert.equal(72, result);

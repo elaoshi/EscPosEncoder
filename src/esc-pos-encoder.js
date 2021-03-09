@@ -648,10 +648,12 @@ class EscPosEncoder {
    */
   drawTextLeftAndRight(left, right) {
     const width = this._pageWidth;
-    const spaceNum = (width - left.length - right.length) / 12;
+    const spaceNum = parseInt((width - left.length - right.length) / 20);
 
-    const text = left + ''*spaceNum + right;
-    return text;
+    const text = left + Array(spaceNum + 1).join(' ') + right;
+    this.text(value);
+    return this;
+
   }
 
 

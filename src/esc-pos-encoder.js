@@ -24,7 +24,8 @@ class EscPosEncoder {
   _reset() {
     this._buffer = [];
     this._codepage = 'ascii';
-
+    this._pageWidth = 576;
+    this._baseLine = 3;
     this._state = {
       'bold': false,
       'italic': false,
@@ -616,6 +617,43 @@ class EscPosEncoder {
     ]);
     return this;
   }
+
+  /**
+   * set text scale
+  * @param  {string}   string  string
+  * @param  {string}   nEngCharWidth  string
+  * @param  {string}   nChnCharWidth  string
+  * @return {object}          Return the object, for easy chaining commands
+   */
+  computeStringWidth(string, nEngCharWidth, nChnCharWidth) {
+    let nWidth = 0;
+    for (let i = 0; i < string.length; i ++) {
+      if (string.charAt(i) < 0x20) {
+        break;
+      } else if (string.charAt(i)< 0x100) {
+        nWidth += nEngCharWidth;
+      } else {
+        nWidth += nChnCharWidth;
+      }
+    }
+
+    return nWidth;
+  }
+
+  /**
+   * get text
+  * @param  {string}   left  string
+  * @param  {string}   right  string
+  * @return {object}          Return the object, for easy chaining commands
+   */
+  drawTextLeftAndRight(left, right) {
+    const width = this._pageWidth;
+    const spaceNum = (width - left.length - right.length) / 12;
+
+    const text = left + ''*spaceNum + right;
+    return text;
+  }
+
 
   /**
      * Encode all previous commands

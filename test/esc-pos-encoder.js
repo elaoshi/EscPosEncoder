@@ -257,7 +257,7 @@ describe('EscPosEncoder', function() {
 
     describe('setTextScale(1,0)', function () {
         let result = encoder.setTextScale( 1, 0 ).encode();
-        console.log(result);
+        // console.log(result);
         it('should be [ 29, 33, 16 ]', function () {
             assert.deepEqual(new Uint8Array([ 29, 33, 16 ]), result);
         });
@@ -265,9 +265,18 @@ describe('EscPosEncoder', function() {
 
     describe('setHorizontalAbsolutePrintPosition(567 - 12 * 6)', function () {
         let result = encoder.setHorizontalAbsolutePrintPosition(567 - 12 * 6).encode();
-        console.log(result);
+        // console.log(result);
         it('should be [ 29, 36, 239, 1 ]', function () {
             assert.deepEqual(new Uint8Array([ 29, 36, 239, 1 ]), result);
         });
     });
+
+    describe('computeStringWidth', function () {
+        let result = encoder.computeStringWidth("hhh",12,24);
+        console.log(result);
+        it('should be 72', function () {
+            assert.equal(72, result);
+        });
+    });
+    
 });

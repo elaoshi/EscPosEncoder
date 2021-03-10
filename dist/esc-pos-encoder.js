@@ -8451,7 +8451,7 @@ class EscPosEncoder {
    */
   setHorizontalAbsolutePrintPosition(nPosition) {
     this._queue([
-      0x1d, 0x24, nPosition%0x100, nPosition/0x100,
+      0x1d, 0x24, nPosition%0x100, parseInt(nPosition/0x100),
     ]);
     return this;
   }

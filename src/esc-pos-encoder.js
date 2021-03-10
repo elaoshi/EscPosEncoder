@@ -606,7 +606,6 @@ class EscPosEncoder {
 
    */
   setTextScale(nWidthScale, nHeightScale) {
-    
     if (nWidthScale) {
       // console.log('change to 24');
       this._line_byte_size = BASIC_LINE_LARGE_SIZE;
@@ -693,6 +692,29 @@ class EscPosEncoder {
     return this;
   }
 
+  /**
+   * print line dots
+  * @param  {string}   nLineStartPosition  start
+  * @param  {string}   nLineEndPosition  start
+  * @param  {string}   nLineThickness  thick
+  * @return {object}          Return the object, for easy chaining commands
+   */
+  printHorizontalLineSpecifyThickness(nLineStartPosition, nLineEndPosition, nLineThickness) {
+    // const datalen = 7 * nLineThickness;
+    const data = [];
+
+    for ( let i = 0; i < nLineThickness; ++i) {
+      data[i*7+0] = 0x1d;
+      data[i*7+1] = 0x27;
+      data[i*7+2] = 0x01;
+      data[i*7+3] = (nLineStartPosition & 0xFF);
+      data[i*7+4] = ((nLineStartPosition >> 8) & 0xFF);
+      data[i*7+5] = (nLineEndPosition & 0xFF);
+      data[i*7+6] = ((nLineEndPosition >> 8) & 0xFF);
+    }
+    this._queue(data);
+    return this;
+  }
   /**
      * Encode all previous commands
      *

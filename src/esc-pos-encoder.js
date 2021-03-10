@@ -278,6 +278,8 @@ class EscPosEncoder {
       value = 0x01;
     } else if (value == 'b') {
       value = 0x02;
+    } else if (value == 'c') {
+      value = 0x03;
     } else {
       value = 0x00;
     }
@@ -604,15 +606,16 @@ class EscPosEncoder {
 
    */
   setTextScale(nWidthScale, nHeightScale) {
-    this._queue([
-      0x1d, 0x21, (nHeightScale&0x07) | ((nWidthScale&0x07) <<4),
-    ]);
+    
     if (nWidthScale) {
       // console.log('change to 24');
       this._line_byte_size = BASIC_LINE_LARGE_SIZE;
     } else {
       this._line_byte_size = BASIC_LINE_SIZE;
     }
+    this._queue([
+      0x1d, 0x21, (nHeightScale&0x07) | ((nWidthScale&0x07) <<4),
+    ]);
     return this;
   }
 

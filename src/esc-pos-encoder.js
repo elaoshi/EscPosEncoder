@@ -679,6 +679,18 @@ class EscPosEncoder {
   }
 
   /**
+   * feed dots
+  * @param  {string}   numDots  number of dots
+  * @return {object}          Return the object, for easy chaining commands
+   */
+  feedDot(numDots) {
+    this._queue([
+      0x1b, 0x4a, numDots,
+    ]);
+    return this;
+  }
+
+  /**
      * Encode all previous commands
      *
      * @return {Uint8Array}         Return the encoded bytes

@@ -5,6 +5,7 @@ Create a set of commands that can be send to any receipt printer that supports E
 ## Update functions
 
 - feedLine
+- feedDot
 - drawTextLeftAndRight
 - setHorizontalAbsolutePrintPosition
 - setTextScale

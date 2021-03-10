@@ -673,7 +673,7 @@ class EscPosEncoder {
    */
   feedLine(numLines) {
     this._queue([
-      0x1b, 0x4a, numLines,
+      0x1b, 0x64, numLines,
     ]);
     return this;
   }

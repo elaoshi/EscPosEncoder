@@ -7831,6 +7831,8 @@ const {createCanvas} = require('canvas');
 const Dither = require('canvas-dither');
 const Flatten = require('canvas-flatten');
 
+const BASIC_LINE_SIZE = 48; // 80 mm usage
+const BASIC_LINE_LARGE_SIZE = 24;
 
 /**
  * Create a byte stream based on commands for ESC/POS printers
@@ -7853,7 +7855,7 @@ class EscPosEncoder {
     this._codepage = 'ascii';
     this._pageWidth = 576;
     this._baseLine = 3;
-    this._line_byte_size = 48;
+    this._line_byte_size = BASIC_LINE_SIZE; // 80mm usage
     this._state = {
       'bold': false,
       'italic': false,
@@ -8101,6 +8103,8 @@ class EscPosEncoder {
   size(value) {
     if (value === 'small') {
       value = 0x01;
+    } else if (value == 'b') {
+      value = 0x02;
     } else {
       value = 0x00;
     }
@@ -8431,7 +8435,10 @@ class EscPosEncoder {
       0x1d, 0x21, (nHeightScale&0x07) | ((nWidthScale&0x07) <<4),
     ]);
     if (nWidthScale) {
-      this._line_byte_size = 24;
+      // console.log('change to 24');
+      this._line_byte_size = BASIC_LINE_LARGE_SIZE;
+    } else {
+      this._line_byte_size = BASIC_LINE_SIZE;
     }
     return this;
   }
@@ -8472,21 +8479,31 @@ class EscPosEncoder {
   }
 
   /**
-   * get text
+   * draw text left and right
   * @param  {string}   left  string
   * @param  {string}   right  string
-  * @param  {string}   nCharScale  string
   * @return {object}          Return the object, for easy chaining commands
    */
-  drawTextLeftAndRight(left, right, nCharScale) {
+  drawTextLeftAndRight(left, right) {
     const width = this._line_byte_size;
-    const spaceNum = parseInt((width - left.length - right.length) / nCharScale);
-    // console.log('space is', spaceNum);
+    const spaceNum = parseInt((width - left.length - right.length) );
+
     const text = left + Array(spaceNum + 1).join(' ') + right;
     this.text(text);
     return this;
   }
 
+  /**
+   * feed lines
+  * @param  {string}   numLines  number of line
+  * @return {object}          Return the object, for easy chaining commands
+   */
+  feedLine(numLines) {
+    this._queue([
+      0x1b, 0x4a, numLines,
+    ]);
+    return this;
+  }
 
   /**
      * Encode all previous commands

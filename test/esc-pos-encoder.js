@@ -281,7 +281,7 @@ describe('EscPosEncoder', function() {
 
     describe('drawTextLeftAndRight', function () {
         encoder.setTextScale(1,1);
-        let result = encoder.drawTextLeftAndRight("total","$20.00",1);
+        let result = encoder.drawTextLeftAndRight("total","$20.00");
         console.log(result);
         // it('should be 72', function () {
         //     assert.equal(72, result);

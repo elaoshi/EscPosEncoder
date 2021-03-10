@@ -2,11 +2,19 @@
 
 Create a set of commands that can be send to any receipt printer that supports ESC/POS
 
+## Update functions
+
+- feedLine
+- drawTextLeftAndRight
+- setHorizontalAbsolutePrintPosition
+- setTextScale
+- setTextLineHeight
+
 ## Usage
 
 First, install the package using npm:
 
-    npm install esc-pos-encoder --save
+    npm instal https://github.com/elaoshi/EscPosEncoder  --save
 
 Then, require the package and use it like so:
 
@@ -97,6 +105,7 @@ An optional parameter turns on word wrapping. To enable this, specify the maximu
     let result = encoder
         .line('The quick brown fox jumps over the lazy dog', 20)
         .encode()
+
 
 ### Underline
 
